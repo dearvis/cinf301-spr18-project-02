@@ -12,43 +12,47 @@ $doubles = array();
 $singles = array();
 $flags = array();
 $count = 1;
-$clicker = 1;
+$clicker = 0;
 $dVal = false;
 $firstVal = true;
 $secondVal = false;
 $characterOne = 'a';
 $characterTwo = 'b ';
 
-// FUnction which allows the user to explode using multiple chars
-function multiexplode ($seq,$string)
-{
-
-    $initial = str_replace($seq, $seq[0], $string);
-    $launch = explode($seq[0], $initial);
-    return  $launch;
-}
-
-
+// Function which allows the user to explode using multiple chars
 foreach($argv as $a ){
     $val[] = $a;
-
-    //Check if a is two ticks
 
 
     //Is the data a double, TWO TICKS
     if (strpos($a, '--') !== FALSE)   // Alright its a double now what
     {
-        $explodedValues = multiexplode(array("--", "=", ","), $a);   // Gets rid of the specified characters and returns improved array
-        print_r($explodedValues);
-    }
+        $tempTwo;
+        $temp = explode("=", $a); // --good grades
+        $temp1 = str_replace("--", "", $temp[0]);
+        $c = count($temp);
+        $clicker += 1;
+
+        for ($i = 0; $i < $c; $i++) {
+            $tempTwo = $temp[$i];
+        }
+        $doubles[$temp1][] = $tempTwo;
     }
 
-//Iterate through the elements on the console
-//Check if the values are Double singles or flags
-// Place values in designated array
-// Displays val
-foreach ($val as $index => $arg) {
-    print("[$index] $arg\n");
-}
+    }
+echo("DOUBLE\n");
+print_r($doubles);
+
+
+
+//  DOUBLES ’grades’ => ’good’ (1 argument)
+// ’names’ => [0] ’Dominic’, [1] ’Mimi’, [2] ’Luke’ (3 arguments)
+
+
+
+
+
+
+
 
 
